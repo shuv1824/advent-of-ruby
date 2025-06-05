@@ -8,17 +8,32 @@ module Year2024
     def part_1
       distances = []
       for i in 0..(data[0].length - 1) do
-        distances.append(data[0][i] - data[1][i])
+        distances.append (data[0][i] - data[1][i]).abs
       end
 
       distances.sum
     end
 
     def part_2
-      nil
+      similarities = []
+      for i in data[0] do
+        similarities.append(times_in_array(data[1], i) * i)
+      end
+
+      similarities.sum
     end
 
     private
+
+    def times_in_array(arr, num)
+      occurance = 0
+
+      for i in arr do
+        occurance += 1 if i == num
+      end
+
+      occurance
+    end
 
     # Processes each line of the input file and stores the result in the dataset
     def process_input(line)
